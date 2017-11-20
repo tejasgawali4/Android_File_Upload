@@ -1,4 +1,4 @@
-package org.bmnepali.imageupload;
+package org.bmnepali.imageupload.Services;
 
 import android.app.Application;
 import android.text.TextUtils;

@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.SimpleMultiPartRequest;
 
+import org.bmnepali.imageupload.Services.MyApplication;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnChoose, btnUpload;
     private ProgressBar progressBar;
 
-    public static String BASE_URL = "http://192.168.1.250/demo_api/upload.php";
+    public static String BASE_URL = "http://192.168.1.10/demo_api/upload.php";
     static final int PICKFILE_RESULT_CODE = 1;
     String filePath;
 
@@ -37,9 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imageView = (ImageView) findViewById(R.id.imageView);
         btnChoose = (Button) findViewById(R.id.button_choose);
-        btnUpload = (Button) findViewById(R.id.button_upload);
 
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
