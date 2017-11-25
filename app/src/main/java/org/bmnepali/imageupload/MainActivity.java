@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnChoose, btnUpload;
     private ProgressBar progressBar;
 
-    public static String BASE_URL = "http://192.168.1.10/demo_api/upload.php";
+    public static String BASE_URL = "http://192.168.0.10:81/demo_api/upload.php";
     static final int PICKFILE_RESULT_CODE = 1;
     String filePath;
 

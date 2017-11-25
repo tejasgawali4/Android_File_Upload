@@ -65,7 +65,7 @@ public class MultiUploadOptions extends AppCompatActivity {
         ImageButton mbtnFiles = (ImageButton) dialogView.findViewById(R.id.btnFiles);
         ImageButton mbtnCamera = (ImageButton) dialogView.findViewById(R.id.btnCamera);
 
-        AlertDialog b = dialogBuilder.create();
+        final AlertDialog b = dialogBuilder.create();
         b.show();
 
         mbtnGallary.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +75,7 @@ public class MultiUploadOptions extends AppCompatActivity {
                 Intent pickPhoto = new Intent(Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(pickPhoto, 2);//one can be replaced with any action code
+                b.dismiss();
             }
         });
 
@@ -87,6 +88,7 @@ public class MultiUploadOptions extends AppCompatActivity {
                 takeFiles.setType("image*//*");
                 takeFiles.setType("video*//*");
                 startActivityForResult(takeFiles, PICKFILE_RESULT_CODE);
+                b.dismiss();
             }
         });
 
@@ -95,6 +97,7 @@ public class MultiUploadOptions extends AppCompatActivity {
             public void onClick(View view) {
                 Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(takePicture, 0);//zero can be replaced with any action code*/
+                b.dismiss();
             }
         });
 
@@ -162,11 +165,17 @@ public class MultiUploadOptions extends AppCompatActivity {
                 ID = UUID.randomUUID().toString();
                 NameHolder = UUID.randomUUID().toString();
 
+                /*FIle Name To Store In database*/
+                Log.d("NameHolder" , NameHolder);
+                /*Full Path Information*/
+                Log.d("PathHolder" , filename);
+
+
                 new MultipartUploadRequest(this, ID, BASE_URL)
                         .addFileToUpload(PathHolder, "file")
                         .addParameter("name", NameHolder)
                         .setNotificationConfig(new UploadNotificationConfig())
-                        .setMaxRetries(5)
+                        .setMaxRetries(2)
                         .startUpload();
 
             } catch (Exception exception) {
